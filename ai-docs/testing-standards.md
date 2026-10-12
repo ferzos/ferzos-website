@@ -1,5 +1,9 @@
 # Testing standards
 
+## Shared mocks
+
+- Before adding a mock in a test, always check the shared test utilities and Jest setup for an existing mock function. Reuse it rather than duplicating mock setup; extend the shared utility when another test needs the same behavior.
+
 ## UI queries
 
 - Do not import or use `screen` in UI tests. Destructure the needed `getBy*` query functions from the `render()` result.

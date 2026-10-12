@@ -26,7 +26,12 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Features
 
-- [Optimal stopping calculator](ai-docs/features/optimal-stopping.md)s
+- [Optimal stopping calculator](ai-docs/features/optimal-stopping.md)
+- Installable Progressive Web App (PWA) with offline support for previously visited pages.
+
+## Progressive Web App
+
+The app includes a web manifest, app icons, and a service worker that caches static assets and previously visited pages. When offline, previously cached pages remain available; otherwise, users see an offline fallback page. Install the app from a supported browser's install or home-screen option. Production deployments must use HTTPS for installation and service-worker support (localhost is allowed for development).
 
 ## Project structure
 

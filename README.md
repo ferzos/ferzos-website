@@ -20,6 +20,21 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Linting and formatting
+
+Install the recommended **ESLint** and **Prettier - Code formatter** VS Code
+extensions when prompted. Workspace settings format files with Prettier and
+apply ESLint autofixes on save. Rules use the recommended Next.js Core Web
+Vitals and TypeScript configurations, with conflicting formatting rules disabled.
+
+- `pnpm lint` checks lint rules.
+- `pnpm lint:fix` applies available lint fixes.
+- `pnpm format` formats the project.
+- `pnpm format:check` checks formatting without changing files.
+
+Formatting uses two spaces, double quotes, semicolons, trailing commas, and an
+80-character print width. Generated files and the package lockfile are excluded.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

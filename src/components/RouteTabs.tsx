@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const tabs = [{ label: "Optional Stopping", href: "/optional-stopping" }];
+const tabs = [{ label: "Optional Stopping", href: "/optimal-stopping" }];
 
 export default function RouteTabs({ children }: { children: ReactNode }) {
   const pathname = usePathname();

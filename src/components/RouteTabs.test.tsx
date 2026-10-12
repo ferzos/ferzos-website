@@ -12,7 +12,7 @@ describe("RouteTabs", () => {
   });
 
   it("should show the page content and active tab for the current route", () => {
-    mockNextNavigation({ pathname: "/optional-stopping", push: mockPush });
+    mockNextNavigation({ pathname: "/optimal-stopping", push: mockPush });
     const { getByRole, getByText } = render(
       <RouteTabs>
         <p>Optional stopping content</p>
@@ -35,6 +35,6 @@ describe("RouteTabs", () => {
 
     await user.click(getByRole("tab", { name: "Optional Stopping" }));
 
-    expect(mockPush).toHaveBeenCalledWith("/optional-stopping");
+    expect(mockPush).toHaveBeenCalledWith("/optimal-stopping");
   });
 });

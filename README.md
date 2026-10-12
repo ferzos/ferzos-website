@@ -1,51 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ferzos Website
 
-## Getting Started
+A Next.js application contains Ferzos' ideas
 
-First, run the development server:
+## Getting started
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
+This project uses pnpm. Install dependencies and start the development server:
+
+```sh
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `pnpm dev` — start the development server.
+- `pnpm build` — create a production build.
+- `pnpm start` — serve the production build (run `pnpm build` first).
+- `pnpm test` — run the Jest test suite.
+- `pnpm lint` — check the project with ESLint.
+- `pnpm lint:fix` — apply available ESLint fixes.
+- `pnpm format` — format files with Prettier.
+- `pnpm format:check` — check formatting without changing files.
 
-## Linting and formatting
+## Features
 
-Install the recommended **ESLint** and **Prettier - Code formatter** VS Code
-extensions when prompted. Workspace settings format files with Prettier and
-apply ESLint autofixes on save. Rules use the recommended Next.js Core Web
-Vitals and TypeScript configurations, with conflicting formatting rules disabled.
+- [Optimal stopping calculator](ai-docs/features/optimal-stopping.md)s
 
-- `pnpm lint` checks lint rules.
-- `pnpm lint:fix` applies available lint fixes.
-- `pnpm format` formats the project.
-- `pnpm format:check` checks formatting without changing files.
+## Project structure
 
-Formatting uses two spaces, double quotes, semicolons, trailing commas, and an
-80-character print width. Generated files and the package lockfile are excluded.
+- `src/app/` — App Router routes, root layout, and global styles.
+- `src/app/optional-stopping/` — calculator page and its UI components.
+- `src/components/` — shared components and UI primitives.
+- `src/lib/` — calculation and utility functions.
+- `src/__mocks__/` — shared test mocks.
+- `ai-docs/` — feature documentation, testing, and component standards.
 
-## Learn More
+## Tests and conventions
 
-To learn more about Next.js, take a look at the following resources:
+Tests use Jest and React Testing Library. Run them with `pnpm test`. Before adding a test mock, check the shared mocks and Jest setup first. See [testing standards](ai-docs/testing-standards.md) and [component standards](ai-docs/component-standards.md) for project conventions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 16 with the App Router
+- React 19 and TypeScript
+- Tailwind CSS 4
+- Jest and React Testing Library

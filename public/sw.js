@@ -1,6 +1,6 @@
 const CACHE_NAME = "ferzos-pwa-v1";
 const OFFLINE_URL = "/offline.html";
-const START_URL = "/optional-stopping";
+const START_URL = "/optimal-stopping";
 
 async function cacheResponse(request, response) {
   if (response.ok) {

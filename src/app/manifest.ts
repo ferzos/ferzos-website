@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Ferzos",
     short_name: "Ferzos",
     description: "Tools and insights for better decisions.",
-    start_url: "/optional-stopping",
+    start_url: "/optimal-stopping",
     scope: "/",
     display: "standalone",
     background_color: "#ffffff",

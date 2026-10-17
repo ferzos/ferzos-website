@@ -20,7 +20,7 @@ describe("RouteTabs", () => {
     );
 
     expect(
-      getByRole("tab", { name: "Optional Stopping" }),
+      getByRole("tab", { name: "Optimal Stopping" }),
     ).toHaveAttribute("aria-selected", "true");
     expect(getByText("Optional stopping content")).toBeInTheDocument();
   });
@@ -33,7 +33,7 @@ describe("RouteTabs", () => {
       </RouteTabs>,
     );
 
-    await user.click(getByRole("tab", { name: "Optional Stopping" }));
+    await user.click(getByRole("tab", { name: "Optimal Stopping" }));
 
     expect(mockPush).toHaveBeenCalledWith("/optimal-stopping");
   });

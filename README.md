@@ -32,6 +32,8 @@ Open [http://localhost:3000](http://localhost:3000).
 
 The app includes a web manifest, app icons, and a service worker that caches static assets and previously visited pages. Install the app from a supported browser's install or home-screen option.
 
+The 192px and 512px maskable icons and the 180px Apple touch icon use a full-bleed purple background with a smaller, centered logo. Keep the logo within the central safe-area circle (80% of the icon width) so home-screen masks do not crop it.
+
 ## Project structure
 
 - `src/app/` — App Router routes, root layout, and global styles.

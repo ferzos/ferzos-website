@@ -4,9 +4,16 @@ import type { ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const tabs = [{ label: "Optimal Stopping", href: "/optimal-stopping" }];
+const tabs = [
+  { label: "Optimal Stopping", href: "/optimal-stopping" },
+  { label: "Cost-Benefit Analysis", href: "/cost-benefit-analysis" },
+];
 
-export default function RouteTabs({ children }: { children: ReactNode }) {
+interface RouteTabsProps {
+  children: ReactNode;
+}
+
+export default function RouteTabs({ children }: RouteTabsProps) {
   const pathname = usePathname();
   const router = useRouter();
 

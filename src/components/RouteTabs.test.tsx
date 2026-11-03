@@ -37,4 +37,17 @@ describe("RouteTabs", () => {
 
     expect(mockPush).toHaveBeenCalledWith("/optimal-stopping");
   });
+
+  it("should navigate to cost-benefit analysis when its tab is chosen", async () => {
+    const user = userEvent.setup();
+    const { getByRole } = render(
+      <RouteTabs>
+        <p>Optional stopping content</p>
+      </RouteTabs>,
+    );
+
+    await user.click(getByRole("tab", { name: "Cost-Benefit Analysis" }));
+
+    expect(mockPush).toHaveBeenCalledWith("/cost-benefit-analysis");
+  });
 });

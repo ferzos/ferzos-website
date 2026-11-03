@@ -4,7 +4,13 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { calculate, type Mode, type TimeUnit } from "@/lib/optimal-stopping";
 
@@ -51,7 +57,9 @@ export function StopCalculator() {
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
-          {mode === "distance" && <Input value="km" disabled aria-label="Unit" />}
+          {mode === "distance" && (
+            <Input value="km" disabled aria-label="Unit" />
+          )}
           {mode === "time" && (
             <Select value={unit} onValueChange={(v) => setUnit(v as TimeUnit)}>
               <SelectTrigger aria-label="Unit">
@@ -87,7 +95,9 @@ export function StopCalculator() {
       {result.ok && (
         <section className="rounded-xl border p-5">
           <p className="text-sm text-muted-foreground">Explore for</p>
-          <p className="mt-1 break-words text-4xl font-bold tracking-tight">{result.text}</p>
+          <p className="mt-1 break-words text-4xl font-bold tracking-tight">
+            {result.text}
+          </p>
         </section>
       )}
     </div>

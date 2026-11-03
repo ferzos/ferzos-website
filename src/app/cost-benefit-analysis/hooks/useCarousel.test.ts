@@ -33,14 +33,23 @@ describe("useCarousel", () => {
     const scrollBy = jest.fn();
 
     setMetric(card, "offsetWidth", 120);
-    Object.defineProperty(element, "firstElementChild", { configurable: true, value: card });
-    Object.defineProperty(element, "scrollBy", { configurable: true, value: scrollBy });
+    Object.defineProperty(element, "firstElementChild", {
+      configurable: true,
+      value: card,
+    });
+    Object.defineProperty(element, "scrollBy", {
+      configurable: true,
+      value: scrollBy,
+    });
     act(() => result.current.setElement(element));
 
     act(() => result.current.scrollByCard(1));
     expect(scrollBy).toHaveBeenCalledWith({ left: 132, behavior: "smooth" });
 
     act(() => result.current.scrollByCard(-1));
-    expect(scrollBy).toHaveBeenLastCalledWith({ left: -132, behavior: "smooth" });
+    expect(scrollBy).toHaveBeenLastCalledWith({
+      left: -132,
+      behavior: "smooth",
+    });
   });
 });

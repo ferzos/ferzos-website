@@ -47,7 +47,10 @@ describe("StopCalculator", () => {
     const { getByRole, getByText } = render(<StopCalculator />);
 
     await user.click(getByRole("tab", { name: "Objects" }));
-    await user.type(getByRole("textbox", { name: "What you are counting" }), "shops");
+    await user.type(
+      getByRole("textbox", { name: "What you are counting" }),
+      "shops",
+    );
 
     expect(getByText("4 shops")).toBeInTheDocument();
   });

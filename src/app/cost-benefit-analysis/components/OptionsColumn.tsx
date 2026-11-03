@@ -15,10 +15,19 @@ interface OptionsColumnProps {
 }
 
 /** The fixed left column. Each row lines up with rating rows in every variable card. */
-export function OptionsColumn({ options, onAdd, onRename, onRemove }: OptionsColumnProps) {
+export function OptionsColumn({
+  options,
+  onAdd,
+  onRename,
+  onRemove,
+}: OptionsColumnProps) {
   return (
     <div className="rounded-lg border bg-card text-card-foreground p-2.5 sm:p-3.5">
-      <div className={cn("mb-4 h-[76px] flex items-end text-xs text-muted-foreground")}>
+      <div
+        className={cn(
+          "mb-4 h-[76px] flex items-end text-xs text-muted-foreground",
+        )}
+      >
         Options
       </div>
       {options.map((option, index) => (
@@ -45,7 +54,12 @@ export function OptionsColumn({ options, onAdd, onRename, onRemove }: OptionsCol
           </div>
         </div>
       ))}
-      <Button type="button" variant="outline" className="h-9 w-full" onClick={onAdd}>
+      <Button
+        type="button"
+        variant="outline"
+        className="h-9 w-full"
+        onClick={onAdd}
+      >
         <PlusIcon aria-hidden="true" />
         Add option
       </Button>

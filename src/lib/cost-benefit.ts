@@ -81,7 +81,7 @@ export const isInvalidRating = (raw: string): boolean =>
  */
 export function calculateResult(
   variables: Variable[],
-  options: Option[]
+  options: Option[],
 ): CostBenefitResult {
   const count = variables.length || 1;
   const ratingOf = (option: Option, variable: Variable) =>
@@ -92,7 +92,9 @@ export function calculateResult(
       const adjusted = variables.map((variable) => {
         const rating = ratingOf(option, variable);
         if (rating === null) return 0;
-        return variable.direction === "higher" ? rating : MAX_RATING + MIN_RATING - rating;
+        return variable.direction === "higher"
+          ? rating
+          : MAX_RATING + MIN_RATING - rating;
       });
 
       return {
@@ -110,10 +112,10 @@ export function calculateResult(
   return {
     ranked,
     hasEmptyCells: options.some((option) =>
-      variables.some((variable) => ratingOf(option, variable) === null)
+      variables.some((variable) => ratingOf(option, variable) === null),
     ),
     hasAnyRating: options.some((option) =>
-      variables.some((variable) => ratingOf(option, variable) !== null)
+      variables.some((variable) => ratingOf(option, variable) !== null),
     ),
   };
 }

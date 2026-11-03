@@ -31,9 +31,15 @@ async function precacheStartRoute() {
     const html = await response.clone().text();
     await cacheResponse(START_URL, response);
 
-    const assets = [...new Set(html.match(/\/_next\/static\/[^"'\s<>\\]+/g) || [])];
+    const assets = [
+      ...new Set(html.match(/\/_next\/static\/[^"'\s<>\\]+/g) || []),
+    ];
     await Promise.allSettled(
-      assets.map((asset) => fetch(asset).then((assetResponse) => cacheResponse(asset, assetResponse))),
+      assets.map((asset) =>
+        fetch(asset).then((assetResponse) =>
+          cacheResponse(asset, assetResponse),
+        ),
+      ),
     );
   } catch (error) {
     console.warn("Failed to precache the start route:", error);
@@ -57,7 +63,9 @@ self.addEventListener("activate", (event) => {
       .then((keys) =>
         Promise.all(
           keys
-            .filter((key) => key.startsWith("ferzos-pwa-") && key !== CACHE_NAME)
+            .filter(
+              (key) => key.startsWith("ferzos-pwa-") && key !== CACHE_NAME,
+            )
             .map((key) => caches.delete(key)),
         ),
       )
@@ -75,7 +83,10 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => cacheResponse(request, response))
-        .catch(async () => (await matchCached(request)) || (await matchCached(OFFLINE_URL))),
+        .catch(
+          async () =>
+            (await matchCached(request)) || (await matchCached(OFFLINE_URL)),
+        ),
     );
     return;
   }

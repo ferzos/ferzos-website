@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CaretLeftIcon, CaretRightIcon, PlusIcon } from "@phosphor-icons/react";
@@ -23,7 +23,10 @@ import { VariableCard } from "./VariableCard";
 export function CostBenefitAnalysis() {
   const [data, setData] = useState<CostBenefitData>(createInitialData);
   const { variables, options } = data;
-  const result = useMemo(() => calculateResult(variables, options), [variables, options]);
+  const result = useMemo(
+    () => calculateResult(variables, options),
+    [variables, options],
+  );
   const {
     setElement: setCarouselElement,
     canPrev,
@@ -37,7 +40,9 @@ export function CostBenefitAnalysis() {
     const id = focusIdRef.current;
     if (!id) return;
     focusIdRef.current = null;
-    boardRef.current?.querySelector<HTMLElement>(`[data-focus="${id}"]`)?.focus();
+    boardRef.current
+      ?.querySelector<HTMLElement>(`[data-focus="${id}"]`)
+      ?.focus();
   }, [data]);
 
   const addVariable = () => {
@@ -53,7 +58,7 @@ export function CostBenefitAnalysis() {
     setData((previous) => ({
       ...previous,
       variables: previous.variables.map((variable) =>
-        variable.id === id ? { ...variable, ...patch } : variable
+        variable.id === id ? { ...variable, ...patch } : variable,
       ),
     }));
 
@@ -62,14 +67,18 @@ export function CostBenefitAnalysis() {
       previous.variables.length <= 1
         ? previous
         : {
-            variables: previous.variables.filter((variable) => variable.id !== id),
+            variables: previous.variables.filter(
+              (variable) => variable.id !== id,
+            ),
             options: previous.options.map((option) => ({
               ...option,
               cells: Object.fromEntries(
-                Object.entries(option.cells).filter(([variableId]) => variableId !== id)
+                Object.entries(option.cells).filter(
+                  ([variableId]) => variableId !== id,
+                ),
               ),
             })),
-          }
+          },
     );
 
   const addOption = () => {
@@ -84,17 +93,26 @@ export function CostBenefitAnalysis() {
   const renameOption = (id: string, name: string) =>
     setData((previous) => ({
       ...previous,
-      options: previous.options.map((option) => (option.id === id ? { ...option, name } : option)),
+      options: previous.options.map((option) =>
+        option.id === id ? { ...option, name } : option,
+      ),
     }));
 
   const removeOption = (id: string) =>
     setData((previous) =>
       previous.options.length <= 1
         ? previous
-        : { ...previous, options: previous.options.filter((option) => option.id !== id) }
+        : {
+            ...previous,
+            options: previous.options.filter((option) => option.id !== id),
+          },
     );
 
-  const updateCell = (optionId: string, variableId: string, patch: Partial<Cell>) =>
+  const updateCell = (
+    optionId: string,
+    variableId: string,
+    patch: Partial<Cell>,
+  ) =>
     setData((previous) => ({
       ...previous,
       options: previous.options.map((option) =>
@@ -106,7 +124,7 @@ export function CostBenefitAnalysis() {
                 [variableId]: { ...getCell(option, variableId), ...patch },
               },
             }
-          : option
+          : option,
       ),
     }));
 
@@ -163,16 +181,23 @@ export function CostBenefitAnalysis() {
                 canRemove={variables.length > 1}
                 onUpdate={(patch) => updateVariable(variable.id, patch)}
                 onRemove={() => removeVariable(variable.id)}
-                onUpdateCell={(optionId, patch) => updateCell(optionId, variable.id, patch)}
+                onUpdateCell={(optionId, patch) =>
+                  updateCell(optionId, variable.id, patch)
+                }
               />
             ))}
             <div
               className={cn(
                 "flex shrink-0 basis-[min(180px,70%)] snap-start items-center justify-center rounded-lg border border-dashed",
-                "p-2.5 sm:p-3.5"
+                "p-2.5 sm:p-3.5",
               )}
             >
-              <Button type="button" variant="outline" className="h-9" onClick={addVariable}>
+              <Button
+                type="button"
+                variant="outline"
+                className="h-9"
+                onClick={addVariable}
+              >
                 <PlusIcon aria-hidden="true" />
                 Add variable
               </Button>

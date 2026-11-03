@@ -10,11 +10,12 @@ export function useCarousel(contentKey: unknown) {
   const measure = useCallback(() => {
     if (!element) return;
     const canPrev = element.scrollLeft > 2;
-    const canNext = element.scrollLeft < element.scrollWidth - element.clientWidth - 2;
+    const canNext =
+      element.scrollLeft < element.scrollWidth - element.clientWidth - 2;
     setEdges((previous) =>
       previous.canPrev === canPrev && previous.canNext === canNext
         ? previous
-        : { canPrev, canNext }
+        : { canPrev, canNext },
     );
   }, [element]);
 
@@ -30,15 +31,25 @@ export function useCarousel(contentKey: unknown) {
     };
   }, [measure, contentKey, element]);
 
-  const scrollByCard = useCallback((direction: 1 | -1) => {
-    if (!element) return;
-    const card = element.firstElementChild as HTMLElement | null;
-    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    element.scrollBy?.({
-      left: direction * ((card?.offsetWidth ?? 0) + CARD_GAP),
-      behavior: reduceMotion ? "auto" : "smooth",
-    });
-  }, [element]);
+  const scrollByCard = useCallback(
+    (direction: 1 | -1) => {
+      if (!element) return;
+      const card = element.firstElementChild as HTMLElement | null;
+      const reduceMotion = window.matchMedia?.(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      element.scrollBy?.({
+        left: direction * ((card?.offsetWidth ?? 0) + CARD_GAP),
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
+    },
+    [element],
+  );
 
-  return { setElement, canPrev: edges.canPrev, canNext: edges.canNext, scrollByCard };
+  return {
+    setElement,
+    canPrev: edges.canPrev,
+    canNext: edges.canNext,
+    scrollByCard,
+  };
 }

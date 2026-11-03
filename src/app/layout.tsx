@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import appleTouchIcon from "./apple-touch-icon.png";
 import { ServiceWorkerRegistration } from "./service-worker-registration";
+import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <ServiceWorkerRegistration />
+        <PWAInstallPrompt />
         {children}
       </body>
     </html>

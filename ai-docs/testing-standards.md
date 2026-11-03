@@ -39,7 +39,7 @@ The `should ...` naming convention applies to every type of unit test, including
 Use the following pattern:
 
 ```ts
-it('should <expected output or state> when <user action or scenario>', () => {
+it("should <expected output or state> when <user action or scenario>", () => {
   // Test implementation.
 });
 ```
@@ -54,14 +54,14 @@ it('should <expected output or state> when <user action or scenario>', () => {
 
 ### Examples
 
-| Preferred | Avoid |
-| --- | --- |
-| `should show modal when submit button is clicked` | `should show modal when onClick is triggered` |
-| `should show an error when a fractional number of shops is entered` | `should reject non-integers` |
-| `should show a stopping distance of 3.68 km when a 10 km journey is entered` | `should show 37% of the remaining km` |
-| `should show 1 shop when 3 shops are entered` | `should use singular for 1` |
-| `should return 1 shop when 3 shops are available` | `objects: singular for 1` |
-| `should expose an updated count after increment is called` | `updates count` |
+| Preferred                                                                    | Avoid                                         |
+| ---------------------------------------------------------------------------- | --------------------------------------------- |
+| `should show modal when submit button is clicked`                            | `should show modal when onClick is triggered` |
+| `should show an error when a fractional number of shops is entered`          | `should reject non-integers`                  |
+| `should show a stopping distance of 3.68 km when a 10 km journey is entered` | `should show 37% of the remaining km`         |
+| `should show 1 shop when 3 shops are entered`                                | `should use singular for 1`                   |
+| `should return 1 shop when 3 shops are available`                            | `objects: singular for 1`                     |
+| `should expose an updated count after increment is called`                   | `updates count`                               |
 
 ## UI test scope
 

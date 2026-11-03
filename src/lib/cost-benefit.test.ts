@@ -11,7 +11,10 @@ import {
   type Variable,
 } from "./cost-benefit";
 
-const variable = (id: string, direction: Variable["direction"] = "higher"): Variable => ({
+const variable = (
+  id: string,
+  direction: Variable["direction"] = "higher",
+): Variable => ({
   id,
   name: id,
   direction,
@@ -20,7 +23,7 @@ const variable = (id: string, direction: Variable["direction"] = "higher"): Vari
 const option = (
   id: string,
   ratings: Record<string, string>,
-  notes: Record<string, string> = {}
+  notes: Record<string, string> = {},
 ): Option => ({
   id,
   name: id,
@@ -28,7 +31,7 @@ const option = (
     Object.entries(ratings).map(([variableId, value]) => [
       variableId,
       { value, note: notes[variableId] ?? "" },
-    ])
+    ]),
   ),
 });
 
@@ -62,8 +65,12 @@ describe("isInvalidRating", () => {
 describe("labels", () => {
   it("should use a numbered label when a name is blank", () => {
     expect(optionLabel({ id: "a", name: "  ", cells: {} }, 1)).toBe("Option 2");
-    expect(optionLabel({ id: "a", name: "Shoe A", cells: {} }, 1)).toBe("Shoe A");
-    expect(variableLabel({ id: "v", name: "", direction: "higher" }, 0)).toBe("Variable 1");
+    expect(optionLabel({ id: "a", name: "Shoe A", cells: {} }, 1)).toBe(
+      "Shoe A",
+    );
+    expect(variableLabel({ id: "v", name: "", direction: "higher" }, 0)).toBe(
+      "Variable 1",
+    );
   });
 });
 
@@ -103,7 +110,7 @@ describe("calculateResult", () => {
     const initialData = createInitialData();
     const { hasAnyRating, hasEmptyCells } = calculateResult(
       initialData.variables,
-      initialData.options
+      initialData.options,
     );
     expect(hasAnyRating).toBe(false);
     expect(hasEmptyCells).toBe(true);

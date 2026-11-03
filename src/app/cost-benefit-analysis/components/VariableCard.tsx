@@ -66,7 +66,9 @@ export function VariableCard({
           aria-label={`Direction for ${label}`}
           className="mt-2 h-8 w-full rounded-md border border-input bg-background px-1.5 text-[13px] text-foreground"
           value={variable.direction}
-          onChange={(event) => onUpdate({ direction: event.target.value as Direction })}
+          onChange={(event) =>
+            onUpdate({ direction: event.target.value as Direction })
+          }
         >
           <option value="higher">Higher is better</option>
           <option value="lower">Lower is better</option>
@@ -89,14 +91,18 @@ export function VariableCard({
               aria-label={cellLabel}
               aria-invalid={isInvalidRating(cell.value) || undefined}
               value={cell.value}
-              onChange={(event) => onUpdateCell(option.id, { value: event.target.value })}
+              onChange={(event) =>
+                onUpdateCell(option.id, { value: event.target.value })
+              }
             />
             <Input
               placeholder="Note (optional)"
               className="mt-1.5 h-[30px] border-dashed text-xs text-muted-foreground"
               aria-label={`Note for ${cellLabel}`}
               value={cell.note}
-              onChange={(event) => onUpdateCell(option.id, { note: event.target.value })}
+              onChange={(event) =>
+                onUpdateCell(option.id, { note: event.target.value })
+              }
             />
           </div>
         );

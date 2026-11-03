@@ -19,9 +19,10 @@ describe("RouteTabs", () => {
       </RouteTabs>,
     );
 
-    expect(
-      getByRole("tab", { name: "Optimal Stopping" }),
-    ).toHaveAttribute("aria-selected", "true");
+    expect(getByRole("tab", { name: "Optimal Stopping" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
     expect(getByText("Optional stopping content")).toBeInTheDocument();
   });
 

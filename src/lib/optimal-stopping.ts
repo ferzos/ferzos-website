@@ -14,7 +14,12 @@ const MINUTES: Record<TimeUnit, number> = { min: 1, h: 60, d: 1440 };
 export function formatDuration(totalSeconds: number): string {
   let s = Math.round(totalSeconds);
   const parts: string[] = [];
-  for (const [label, size] of [["d", 86400], ["h", 3600], ["min", 60], ["s", 1]] as const) {
+  for (const [label, size] of [
+    ["d", 86400],
+    ["h", 3600],
+    ["min", 60],
+    ["s", 1],
+  ] as const) {
     const v = Math.floor(s / size);
     if (v) {
       parts.push(`${v} ${label}`);
@@ -38,7 +43,8 @@ function formatCount(n: number, name: string): string {
 
 export function calculate(input: Input): Result {
   const { value } = input;
-  if (!(value > 0)) return { ok: false, error: "Enter a number greater than 0." };
+  if (!(value > 0))
+    return { ok: false, error: "Enter a number greater than 0." };
 
   switch (input.mode) {
     case "distance":
@@ -49,7 +55,11 @@ export function calculate(input: Input): Result {
         text: formatDuration(value * MINUTES[input.unit] * EXPLORE_RATIO * 60),
       };
     case "objects":
-      if (!Number.isInteger(value)) return { ok: false, error: "Enter a whole number." };
-      return { ok: true, text: formatCount(Math.round(value * EXPLORE_RATIO), input.name) };
+      if (!Number.isInteger(value))
+        return { ok: false, error: "Enter a whole number." };
+      return {
+        ok: true,
+        text: formatCount(Math.round(value * EXPLORE_RATIO), input.name),
+      };
   }
 }

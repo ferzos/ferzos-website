@@ -25,6 +25,13 @@ expect(getByRole("button", { name: "Save" })).toBeInTheDocument();
 expect(getByText("Saved")).toBeInTheDocument();
 ```
 
+## UI interactions
+
+- Prefer `@testing-library/user-event` for UI interactions because it models user behavior rather than dispatching isolated DOM events.
+- Create a `user` with `userEvent.setup()` in each test that performs interactions, and `await` every interaction.
+- Use `user.type()` to enter text, `user.clear()` before replacing an existing value, `user.selectOptions()` for select controls, and `user.click()` for buttons.
+- Use `fireEvent` only for low-level events that do not represent a user interaction supported by `user-event`.
+
 ## Test names
 
 The `should ...` naming convention applies to every type of unit test, including function, hook, and UI unit tests. It also applies to UI integration tests.

@@ -124,6 +124,11 @@ export function usePWAInstall(): PWAInstallState & {
       }));
     } catch (error) {
       console.error("PWA installation failed:", error);
+      setState((prev) => ({
+        ...prev,
+        canInstall: false,
+        installPrompt: null,
+      }));
     } finally {
       setState((prev) => ({ ...prev, isInstalling: false }));
     }

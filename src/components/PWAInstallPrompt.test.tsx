@@ -94,6 +94,26 @@ describe("PWAInstallPrompt", () => {
     ).toBeInTheDocument();
   });
 
+  it("should hide the install offer when the browser dialog fails", async () => {
+    jest.spyOn(console, "error").mockImplementation(() => {});
+    const user = userEvent.setup();
+    const view = render(<PWAInstallPrompt />);
+    const event = new Event("beforeinstallprompt", { cancelable: true });
+    Object.assign(event, {
+      prompt: jest.fn().mockRejectedValue(new Error("install failed")),
+      userChoice: Promise.resolve({ outcome: "accepted" }),
+    });
+
+    act(() => {
+      window.dispatchEvent(event);
+    });
+    await user.click(view.getByRole("button", { name: "Install" }));
+
+    expect(
+      view.queryByRole("heading", { name: "Install Ferzos" }),
+    ).not.toBeInTheDocument();
+  });
+
   it("should hide the install offer on the next visit when the browser dialog is canceled", async () => {
     const user = userEvent.setup();
     const firstVisit = render(<PWAInstallPrompt />);

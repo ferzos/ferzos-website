@@ -16,6 +16,9 @@ jobs:
           node-version: 22
       - name: Check the deployed commit
         env:
-          ORIGIN: ${{ github.event.deployment_status.environment_url }}
+          # GitHub's environment_url is the unique deployment host. Vercel
+          # Authentication answers that host with a login page. Production
+          # traffic uses the public alias, which is what this check proves.
+          ORIGIN: https://ferzos-website.vercel.app
           SHA: ${{ github.event.deployment.sha }}
         run: node --experimental-strip-types tools/control-ferzos-website.mts health --origin "$ORIGIN" --sha "$SHA"

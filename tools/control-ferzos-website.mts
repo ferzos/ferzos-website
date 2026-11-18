@@ -125,7 +125,15 @@ async function checkHealth(origin: string) {
   if (!response.ok) {
     throw new Error(`/health returned ${response.status}`);
   }
-  const body = (await response.json()) as { ok?: boolean; sha?: string };
+  const text = await response.text();
+  let body: { ok?: boolean; sha?: string };
+  try {
+    body = JSON.parse(text) as { ok?: boolean; sha?: string };
+  } catch {
+    throw new Error(
+      "/health returned HTML instead of JSON. The host is behind Vercel Authentication. Use the public production origin.",
+    );
+  }
   if (body.ok !== true || typeof body.sha !== "string") {
     throw new Error("/health did not return { ok: true, sha }");
   }

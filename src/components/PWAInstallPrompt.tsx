@@ -12,12 +12,10 @@ export function PWAInstallPrompt() {
 
   return (
     <div className="fixed bottom-4 left-4 right-4 z-50 max-w-sm mx-auto sm:left-auto sm:right-4 sm:max-w-md animate-in slide-in-from-bottom-4">
-      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg p-4 space-y-3">
+      <div className="space-y-3 rounded-2xl border border-border bg-card p-4 text-card-foreground shadow-lg">
         <div className="space-y-1">
-          <h3 className="font-semibold text-gray-900 dark:text-white">
-            Install Ferzos
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <h3 className="font-semibold">Install Ferzos</h3>
+          <p className="text-sm text-muted-foreground">
             Get quick access to tools on your phone. Install now!
           </p>
         </div>
@@ -25,14 +23,14 @@ export function PWAInstallPrompt() {
           <button
             onClick={handleInstall}
             disabled={isInstalling}
-            className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white font-medium py-2 px-4 rounded-md transition-colors"
+            className="flex-1 rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/80 disabled:opacity-50"
           >
             {isInstalling ? "Installing..." : "Install"}
           </button>
           <button
             onClick={dismissPrompt}
             disabled={isInstalling}
-            className="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-medium py-2 px-4 rounded-md transition-colors"
+            className="flex-1 rounded-lg bg-secondary px-4 py-2 font-medium text-secondary-foreground transition-colors hover:bg-secondary/80 disabled:opacity-50"
           >
             Later
           </button>

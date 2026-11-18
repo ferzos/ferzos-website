@@ -36,7 +36,7 @@ export function StopCalculator() {
   );
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 rounded-2xl border border-border bg-card/80 p-4 shadow-sm sm:p-5">
       <Tabs value={mode} onValueChange={(v) => setMode(v as Mode)}>
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="distance">Distance</TabsTrigger>
@@ -93,9 +93,9 @@ export function StopCalculator() {
       </div>
 
       {result.ok && (
-        <section className="rounded-xl border p-5">
-          <p className="text-sm text-muted-foreground">Explore for</p>
-          <p className="mt-1 break-words text-4xl font-bold tracking-tight">
+        <section className="rounded-2xl border border-primary/30 bg-accent p-5">
+          <p className="text-sm text-accent-foreground">Explore for</p>
+          <p className="mt-1 break-words text-4xl font-bold tracking-tight text-primary">
             {result.text}
           </p>
         </section>

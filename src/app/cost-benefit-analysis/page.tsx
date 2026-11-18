@@ -11,11 +11,11 @@ export const metadata: Metadata = {
 
 export default function CostBenefitAnalysisPage() {
   return (
-    <div className="flex flex-1 flex-col bg-background text-foreground">
+    <div className="flex flex-1 flex-col text-foreground">
       <div className="mx-auto w-full max-w-5xl px-6 py-12 sm:px-10 sm:py-16">
         <RouteTabs>
           <main className="py-7">
-            <h1 className="text-2xl font-semibold tracking-tight">
+            <h1 className="text-balance text-3xl font-semibold tracking-tight">
               Cost-Benefit Analysis
             </h1>
             <p className="mb-6 mt-1.5 text-sm font-semibold">

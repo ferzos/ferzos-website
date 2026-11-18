@@ -1,23 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import appleTouchIcon from "./apple-touch-icon.png";
 import { ServiceWorkerRegistration } from "./service-worker-registration";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-});
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -31,25 +21,32 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#4f46e5",
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f6efe4" },
+    { media: "(prefers-color-scheme: dark)", color: "#2a2344" },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={cn(
-        "h-full",
-        "antialiased",
-        geistSans.variable,
-        geistMono.variable,
-        "font-mono",
-        jetbrainsMono.variable,
-      )}
+      className={cn("h-full", "antialiased", "font-sans", geistSans.variable)}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col">
         <ServiceWorkerRegistration />
         <PWAInstallPrompt />
+        <header className="border-b border-border/80">
+          <div className="mx-auto flex max-w-5xl items-baseline justify-between gap-4 px-6 py-5 sm:px-10">
+            <p className="text-xl font-semibold tracking-tight text-primary">
+              Ferzos
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Small tools for decisions you can finish.
+            </p>
+          </div>
+        </header>
         {children}
       </body>
     </html>

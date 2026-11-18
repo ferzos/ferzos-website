@@ -130,9 +130,14 @@ async function checkHealth(origin: string) {
   try {
     body = JSON.parse(text) as { ok?: boolean; sha?: string };
   } catch {
-    throw new Error(
-      "/health returned HTML instead of JSON. The host is behind Vercel Authentication. Use the public production origin.",
-    );
+    const loginPage =
+      response.url.includes("vercel.com/login") ||
+      response.url.includes("vercel.com/sso-api") ||
+      text.includes("vercel.com/sso-api");
+    const hint = loginPage
+      ? " The host redirected to Vercel Authentication. Use the public production origin."
+      : "";
+    throw new Error(`/health did not return valid JSON.${hint}`);
   }
   if (body.ok !== true || typeof body.sha !== "string") {
     throw new Error("/health did not return { ok: true, sha }");

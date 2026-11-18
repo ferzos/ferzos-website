@@ -39,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <ServiceWorkerRegistration />
         <PWAInstallPrompt />
         <header className="border-b border-border/80">
-          <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-5 sm:px-10">
+          <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-6 py-5 sm:px-10">
             <div className="flex items-center gap-3">
               <Image
                 src={appleTouchIcon}

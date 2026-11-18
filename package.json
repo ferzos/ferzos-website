@@ -11,7 +11,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "control": "node --experimental-strip-types tools/control-ferzos-website.mts",
     "verify": "pnpm run test && pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm run control -- map --check && pnpm run build",
     "prepare": "husky"

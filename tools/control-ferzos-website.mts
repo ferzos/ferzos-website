@@ -335,14 +335,25 @@ async function commandBrowse(flags: Map<string, FlagValue>) {
     record ? { recordVideo: { dir: videoDir } } : {},
   );
   const page = await context.newPage();
-  await page.goto(new URL(path, origin).toString(), {
+  const response = await page.goto(new URL(path, origin).toString(), {
     waitUntil: "domcontentloaded",
   });
+  const status = response?.status() ?? 0;
   await page.close();
   await context.close();
   await browser.close();
 
-  return { ok: true, origin, path, videoDir: record ? videoDir : null };
+  return {
+    ok: response?.ok() === true,
+    origin,
+    path,
+    status,
+    videoDir: record ? videoDir : null,
+    fix:
+      response?.ok() === true
+        ? undefined
+        : `GET ${path} returned HTTP ${status || "no response"}.`,
+  };
 }
 
 function commandMap(flags: Map<string, FlagValue>) {
@@ -393,7 +404,7 @@ async function commandPreview(
       "--repo",
       "ferzos/ferzos-website",
       "--json",
-      "statusCheckRollup,url",
+      "url,headRefOid",
     ],
     { cwd: repoRoot, encoding: "utf8" },
   );
@@ -403,22 +414,22 @@ async function commandPreview(
 
   const payload = JSON.parse(view.stdout) as {
     url: string;
-    statusCheckRollup: { context?: string; targetUrl?: string }[];
+    headRefOid?: string;
   };
-  const preview = payload.statusCheckRollup.find(
-    (check) => check.context === "Vercel" && check.targetUrl,
-  );
-  if (!preview?.targetUrl) {
+  const origin = payload.headRefOid
+    ? previewAppOrigin(payload.headRefOid)
+    : undefined;
+  if (!origin) {
     return {
       ok: false,
       pr: payload.url,
-      fix: "No Vercel preview URL on this pull request yet.",
+      fix: "No Vercel preview app URL on this pull request yet.",
     };
   }
 
   const requestSpec = flag(flags, "request");
   if (!requestSpec) {
-    return { ok: true, pr: payload.url, origin: preview.targetUrl };
+    return { ok: true, pr: payload.url, origin };
   }
 
   const [method, path, ...rest] = requestSpec.split(" ");
@@ -429,11 +440,51 @@ async function commandPreview(
   const result = await commandRequest(
     [method, path],
     new Map([
-      ["origin", preview.targetUrl],
+      ["origin", origin],
       ...(contains ? ([["contains", contains]] as const) : []),
     ]),
   );
-  return { ...result, pr: payload.url, origin: preview.targetUrl };
+  return { ...result, pr: payload.url, origin };
+}
+
+function previewAppOrigin(headSha: string) {
+  const list = spawnSync(
+    "gh",
+    [
+      "api",
+      `repos/ferzos/ferzos-website/deployments?sha=${headSha}&environment=Preview&per_page=5`,
+    ],
+    { cwd: repoRoot, encoding: "utf8" },
+  );
+  if (list.status !== 0) return undefined;
+
+  const deployments = JSON.parse(list.stdout) as { id: number }[];
+  for (const deployment of deployments) {
+    const statuses = spawnSync(
+      "gh",
+      [
+        "api",
+        `repos/ferzos/ferzos-website/deployments/${deployment.id}/statuses`,
+      ],
+      { cwd: repoRoot, encoding: "utf8" },
+    );
+    if (statuses.status !== 0) continue;
+
+    const ready = (
+      JSON.parse(statuses.stdout) as {
+        state?: string;
+        environment_url?: string;
+      }[]
+    ).find(
+      (status) =>
+        status.state === "success" &&
+        status.environment_url?.startsWith("https://") &&
+        !status.environment_url.startsWith("https://vercel.com/"),
+    );
+    if (ready?.environment_url) return ready.environment_url;
+  }
+
+  return undefined;
 }
 
 async function commandHealth(flags: Map<string, FlagValue>) {

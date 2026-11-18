@@ -21,16 +21,24 @@ export function PWAInstallPrompt() {
         </div>
         <div className="flex gap-2">
           <button
-            onClick={handleInstall}
-            disabled={isInstalling}
-            className="flex-1 rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/95 disabled:opacity-50"
+            type="button"
+            onClick={() => {
+              if (isInstalling) return;
+              void handleInstall();
+            }}
+            aria-disabled={isInstalling}
+            className="flex-1 rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/95 aria-disabled:opacity-50"
           >
             {isInstalling ? "Installing..." : "Install"}
           </button>
           <button
-            onClick={dismissPrompt}
-            disabled={isInstalling}
-            className="flex-1 rounded-lg bg-secondary px-4 py-2 font-medium text-secondary-foreground transition-colors hover:bg-secondary/80 disabled:opacity-50"
+            type="button"
+            onClick={() => {
+              if (isInstalling) return;
+              dismissPrompt();
+            }}
+            aria-disabled={isInstalling}
+            className="flex-1 rounded-lg bg-secondary px-4 py-2 font-medium text-secondary-foreground transition-colors hover:bg-secondary/80 aria-disabled:opacity-50"
           >
             Later
           </button>

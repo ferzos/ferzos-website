@@ -1,8 +1,38 @@
 import { useEffect, useState } from "react";
 
+export const installPromptDismissedUntilKey =
+  "ferzos.install-prompt.dismissed-until";
+
+const installPromptSnoozeMs = 30 * 24 * 60 * 60 * 1000;
+
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+}
+
+function dismissedUntil(now = Date.now()) {
+  try {
+    const stored = Number(localStorage.getItem(installPromptDismissedUntilKey));
+    return Number.isFinite(stored) ? stored : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function installPromptIsSnoozed(now = Date.now()) {
+  return dismissedUntil(now) > now;
+}
+
+function snoozeInstallPrompt(now = Date.now()) {
+  try {
+    localStorage.setItem(
+      installPromptDismissedUntilKey,
+      String(now + installPromptSnoozeMs),
+    );
+  } catch {
+    // Private browsing can reject storage. The offer still stays hidden
+    // for this visit.
+  }
 }
 
 export interface PWAInstallState {
@@ -38,6 +68,8 @@ export function usePWAInstall(): PWAInstallState & {
 
     const handleBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();
+      if (installPromptIsSnoozed()) return;
+
       const promptEvent = event as BeforeInstallPromptEvent;
       setState((prev) => ({
         ...prev,
@@ -77,24 +109,33 @@ export function usePWAInstall(): PWAInstallState & {
     setState((prev) => ({ ...prev, isInstalling: true }));
 
     try {
-      state.installPrompt.prompt();
-      const result = await state.installPrompt.userChoice;
+      const promptEvent = state.installPrompt;
+      setState((prev) => ({ ...prev, installPrompt: null }));
+      await promptEvent.prompt();
+      const result = await promptEvent.userChoice;
 
-      if (result.outcome === "accepted") {
-        setState((prev) => ({
-          ...prev,
-          canInstall: false,
-          installPrompt: null,
-        }));
+      if (result.outcome === "dismissed") {
+        snoozeInstallPrompt();
       }
+
+      setState((prev) => ({
+        ...prev,
+        canInstall: false,
+      }));
     } catch (error) {
       console.error("PWA installation failed:", error);
+      setState((prev) => ({
+        ...prev,
+        canInstall: false,
+        installPrompt: null,
+      }));
     } finally {
       setState((prev) => ({ ...prev, isInstalling: false }));
     }
   };
 
   const dismissPrompt = () => {
+    snoozeInstallPrompt();
     setState((prev) => ({
       ...prev,
       canInstall: false,

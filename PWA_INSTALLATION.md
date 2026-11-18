@@ -30,7 +30,7 @@ This feature adds a beautiful, user-friendly notification that prompts users to 
 1. **On page load**: The hook checks if the browser supports PWA installation and listens for the `beforeinstallprompt` event
 2. **When installable**: The notification appears showing "Install Ferzos - Get quick access to tools on your phone"
 3. **User clicks Install**: Triggers the native browser install prompt
-4. **User dismisses**: Can click "Later" to hide the notification
+4. **User dismisses**: "Later", or canceling the browser install dialog, hides the offer for 30 days
 5. **After install**: The prompt automatically disappears and doesn't show again
 
 ## Browser support
@@ -60,6 +60,7 @@ The prompt only shows when:
 1. User is on a compatible browser/device
 2. The PWA hasn't been installed yet
 3. The browser's `beforeinstallprompt` event fires
+4. The visitor has not chosen Later, or canceled the browser dialog, in the last 30 days
 
 You can add logic to delay the prompt by modifying `PWAInstallPrompt.tsx`:
 

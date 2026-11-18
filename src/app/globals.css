@@ -48,45 +48,178 @@
 
 :root {
   color-scheme: light dark;
-  --glow: light-dark(oklch(0.86 0.1 55 / 0.75), oklch(0.48 0.14 300 / 0.5));
-  --background: light-dark(oklch(0.97 0.024 85), oklch(0.23 0.04 285));
-  --foreground: light-dark(oklch(0.3 0.04 45), oklch(0.96 0.02 90));
-  --card: light-dark(oklch(0.995 0.01 90), oklch(0.29 0.04 285));
-  --card-foreground: light-dark(oklch(0.3 0.04 45), oklch(0.96 0.02 90));
-  --popover: light-dark(oklch(0.995 0.01 90), oklch(0.29 0.04 285));
-  --popover-foreground: light-dark(oklch(0.3 0.04 45), oklch(0.96 0.02 90));
-  --primary: light-dark(oklch(0.52 0.16 35), oklch(0.82 0.13 75));
-  --primary-foreground: light-dark(oklch(0.99 0.01 95), oklch(0.28 0.05 50));
-  --secondary: light-dark(oklch(0.94 0.03 150), oklch(0.34 0.045 285));
-  --secondary-foreground: light-dark(oklch(0.32 0.05 160), oklch(0.96 0.02 90));
-  --muted: light-dark(oklch(0.94 0.025 80), oklch(0.32 0.035 285));
-  --muted-foreground: light-dark(oklch(0.45 0.04 45), oklch(0.78 0.03 90));
-  --accent: light-dark(oklch(0.93 0.06 55), oklch(0.36 0.06 50));
-  --accent-foreground: light-dark(oklch(0.32 0.06 40), oklch(0.97 0.02 90));
-  --destructive: light-dark(oklch(0.55 0.2 25), oklch(0.74 0.16 25));
-  --border: light-dark(oklch(0.86 0.03 70), oklch(0.96 0.02 90 / 16%));
-  --input: light-dark(oklch(0.86 0.03 70), oklch(0.96 0.02 90 / 18%));
-  --ring: light-dark(oklch(0.62 0.12 35), oklch(0.78 0.1 75));
-  --chart-1: light-dark(oklch(0.62 0.16 35), oklch(0.78 0.13 55));
-  --chart-2: light-dark(oklch(0.58 0.12 165), oklch(0.78 0.1 165));
-  --chart-3: light-dark(oklch(0.55 0.14 280), oklch(0.75 0.12 280));
-  --chart-4: light-dark(oklch(0.7 0.14 95), oklch(0.82 0.12 95));
-  --chart-5: light-dark(oklch(0.58 0.14 15), oklch(0.75 0.12 15));
+  --glow-light: oklch(0.86 0.08 195 / 0.8);
+  --glow-dark: oklch(0.5 0.12 195 / 0.45);
+  --background-light: oklch(0.97 0.02 200);
+  --background-dark: oklch(0.22 0.04 210);
+  --foreground-light: oklch(0.28 0.04 210);
+  --foreground-dark: oklch(0.96 0.015 200);
+  --card-light: oklch(0.995 0.008 200);
+  --card-dark: oklch(0.28 0.045 210);
+  --primary-light: oklch(0.46 0.11 200);
+  --primary-dark: oklch(0.84 0.13 195);
+  --primary-foreground-light: oklch(0.99 0.01 200);
+  --primary-foreground-dark: oklch(0.27 0.06 210);
+  --secondary-light: oklch(0.93 0.04 195);
+  --secondary-dark: oklch(0.32 0.05 205);
+  --secondary-foreground-light: oklch(0.32 0.06 205);
+  --secondary-foreground-dark: oklch(0.96 0.015 200);
+  --muted-light: oklch(0.94 0.025 200);
+  --muted-dark: oklch(0.3 0.04 210);
+  --muted-foreground-light: oklch(0.42 0.04 210);
+  --muted-foreground-dark: oklch(0.78 0.03 200);
+  --accent-light: oklch(0.92 0.06 195);
+  --accent-dark: oklch(0.34 0.07 200);
+  --accent-foreground-light: oklch(0.3 0.06 210);
+  --accent-foreground-dark: oklch(0.96 0.015 200);
+  --destructive-light: oklch(0.55 0.2 25);
+  --destructive-dark: oklch(0.74 0.16 25);
+  --border-light: oklch(0.62 0.05 200);
+  --border-dark: oklch(0.78 0.04 195 / 42%);
+  --input-light: oklch(0.62 0.05 200);
+  --input-dark: oklch(0.78 0.04 195 / 46%);
+  --ring-light: oklch(0.55 0.11 200);
+  --ring-dark: oklch(0.8 0.11 195);
+  --chart-1-light: oklch(0.55 0.12 200);
+  --chart-1-dark: oklch(0.8 0.12 195);
+  --chart-2-light: oklch(0.58 0.12 165);
+  --chart-2-dark: oklch(0.78 0.1 165);
+  --chart-3-light: oklch(0.55 0.12 250);
+  --chart-3-dark: oklch(0.75 0.1 250);
+  --chart-4-light: oklch(0.62 0.12 145);
+  --chart-4-dark: oklch(0.8 0.1 145);
+  --chart-5-light: oklch(0.58 0.12 30);
+  --chart-5-dark: oklch(0.75 0.1 30);
+  --glow: var(--glow-light);
+  --background: var(--background-light);
+  --foreground: var(--foreground-light);
+  --card: var(--card-light);
+  --card-foreground: var(--foreground-light);
+  --popover: var(--card-light);
+  --popover-foreground: var(--foreground-light);
+  --primary: var(--primary-light);
+  --primary-foreground: var(--primary-foreground-light);
+  --secondary: var(--secondary-light);
+  --secondary-foreground: var(--secondary-foreground-light);
+  --muted: var(--muted-light);
+  --muted-foreground: var(--muted-foreground-light);
+  --accent: var(--accent-light);
+  --accent-foreground: var(--accent-foreground-light);
+  --destructive: var(--destructive-light);
+  --border: var(--border-light);
+  --input: var(--input-light);
+  --ring: var(--ring-light);
+  --chart-1: var(--chart-1-light);
+  --chart-2: var(--chart-2-light);
+  --chart-3: var(--chart-3-light);
+  --chart-4: var(--chart-4-light);
+  --chart-5: var(--chart-5-light);
+  --sidebar: var(--card-light);
+  --sidebar-foreground: var(--foreground-light);
+  --sidebar-primary: var(--primary-light);
+  --sidebar-primary-foreground: var(--primary-foreground-light);
+  --sidebar-accent: var(--accent-light);
+  --sidebar-accent-foreground: var(--accent-foreground-light);
+  --sidebar-border: var(--border-light);
+  --sidebar-ring: var(--ring-light);
   --radius: 0.8rem;
-  --sidebar: light-dark(oklch(0.98 0.015 90), oklch(0.27 0.04 285));
-  --sidebar-foreground: light-dark(oklch(0.3 0.04 45), oklch(0.96 0.02 90));
-  --sidebar-primary: light-dark(oklch(0.52 0.16 35), oklch(0.82 0.13 75));
-  --sidebar-primary-foreground: light-dark(
-    oklch(0.99 0.01 95),
-    oklch(0.28 0.05 50)
-  );
-  --sidebar-accent: light-dark(oklch(0.93 0.06 55), oklch(0.36 0.06 50));
-  --sidebar-accent-foreground: light-dark(
-    oklch(0.32 0.06 40),
-    oklch(0.97 0.02 90)
-  );
-  --sidebar-border: light-dark(oklch(0.86 0.03 70), oklch(0.96 0.02 90 / 16%));
-  --sidebar-ring: light-dark(oklch(0.62 0.12 35), oklch(0.78 0.1 75));
+
+  @media (prefers-color-scheme: dark) {
+    --glow: var(--glow-dark);
+    --background: var(--background-dark);
+    --foreground: var(--foreground-dark);
+    --card: var(--card-dark);
+    --card-foreground: var(--foreground-dark);
+    --popover: var(--card-dark);
+    --popover-foreground: var(--foreground-dark);
+    --primary: var(--primary-dark);
+    --primary-foreground: var(--primary-foreground-dark);
+    --secondary: var(--secondary-dark);
+    --secondary-foreground: var(--secondary-foreground-dark);
+    --muted: var(--muted-dark);
+    --muted-foreground: var(--muted-foreground-dark);
+    --accent: var(--accent-dark);
+    --accent-foreground: var(--accent-foreground-dark);
+    --destructive: var(--destructive-dark);
+    --border: var(--border-dark);
+    --input: var(--input-dark);
+    --ring: var(--ring-dark);
+    --chart-1: var(--chart-1-dark);
+    --chart-2: var(--chart-2-dark);
+    --chart-3: var(--chart-3-dark);
+    --chart-4: var(--chart-4-dark);
+    --chart-5: var(--chart-5-dark);
+    --sidebar: var(--card-dark);
+    --sidebar-foreground: var(--foreground-dark);
+    --sidebar-primary: var(--primary-dark);
+    --sidebar-primary-foreground: var(--primary-foreground-dark);
+    --sidebar-accent: var(--accent-dark);
+    --sidebar-accent-foreground: var(--accent-foreground-dark);
+    --sidebar-border: var(--border-dark);
+    --sidebar-ring: var(--ring-dark);
+  }
+
+  @supports (color: light-dark(white, black)) {
+    --glow: light-dark(var(--glow-light), var(--glow-dark));
+    --background: light-dark(var(--background-light), var(--background-dark));
+    --foreground: light-dark(var(--foreground-light), var(--foreground-dark));
+    --card: light-dark(var(--card-light), var(--card-dark));
+    --card-foreground: light-dark(
+      var(--foreground-light),
+      var(--foreground-dark)
+    );
+    --popover: light-dark(var(--card-light), var(--card-dark));
+    --popover-foreground: light-dark(
+      var(--foreground-light),
+      var(--foreground-dark)
+    );
+    --primary: light-dark(var(--primary-light), var(--primary-dark));
+    --primary-foreground: light-dark(
+      var(--primary-foreground-light),
+      var(--primary-foreground-dark)
+    );
+    --secondary: light-dark(var(--secondary-light), var(--secondary-dark));
+    --secondary-foreground: light-dark(
+      var(--secondary-foreground-light),
+      var(--secondary-foreground-dark)
+    );
+    --muted: light-dark(var(--muted-light), var(--muted-dark));
+    --muted-foreground: light-dark(
+      var(--muted-foreground-light),
+      var(--muted-foreground-dark)
+    );
+    --accent: light-dark(var(--accent-light), var(--accent-dark));
+    --accent-foreground: light-dark(
+      var(--accent-foreground-light),
+      var(--accent-foreground-dark)
+    );
+    --destructive: light-dark(var(--destructive-light), var(--destructive-dark));
+    --border: light-dark(var(--border-light), var(--border-dark));
+    --input: light-dark(var(--input-light), var(--input-dark));
+    --ring: light-dark(var(--ring-light), var(--ring-dark));
+    --chart-1: light-dark(var(--chart-1-light), var(--chart-1-dark));
+    --chart-2: light-dark(var(--chart-2-light), var(--chart-2-dark));
+    --chart-3: light-dark(var(--chart-3-light), var(--chart-3-dark));
+    --chart-4: light-dark(var(--chart-4-light), var(--chart-4-dark));
+    --chart-5: light-dark(var(--chart-5-light), var(--chart-5-dark));
+    --sidebar: light-dark(var(--card-light), var(--card-dark));
+    --sidebar-foreground: light-dark(
+      var(--foreground-light),
+      var(--foreground-dark)
+    );
+    --sidebar-primary: light-dark(var(--primary-light), var(--primary-dark));
+    --sidebar-primary-foreground: light-dark(
+      var(--primary-foreground-light),
+      var(--primary-foreground-dark)
+    );
+    --sidebar-accent: light-dark(var(--accent-light), var(--accent-dark));
+    --sidebar-accent-foreground: light-dark(
+      var(--accent-foreground-light),
+      var(--accent-foreground-dark)
+    );
+    --sidebar-border: light-dark(var(--border-light), var(--border-dark));
+    --sidebar-ring: light-dark(var(--ring-light), var(--ring-dark));
+  }
 }
 
 @media (forced-colors: active) {

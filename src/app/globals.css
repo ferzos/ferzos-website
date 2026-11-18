@@ -193,7 +193,10 @@
       var(--accent-foreground-light),
       var(--accent-foreground-dark)
     );
-    --destructive: light-dark(var(--destructive-light), var(--destructive-dark));
+    --destructive: light-dark(
+      var(--destructive-light),
+      var(--destructive-dark)
+    );
     --border: light-dark(var(--border-light), var(--border-dark));
     --input: light-dark(var(--input-light), var(--input-dark));
     --ring: light-dark(var(--ring-light), var(--ring-dark));

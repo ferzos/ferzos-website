@@ -1,5 +1,6 @@
 .autopilot
 .playwright
 .agents/skills/autopilot
+.agents/skills/modern-web-guidance
 .agents/skills/prefer-local-kody-execute
 .agents/skills/visual-recap

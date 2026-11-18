@@ -23,7 +23,7 @@ export function PWAInstallPrompt() {
           <button
             onClick={handleInstall}
             disabled={isInstalling}
-            className="flex-1 rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/80 disabled:opacity-50"
+            className="flex-1 rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/95 disabled:opacity-50"
           >
             {isInstalling ? "Installing..." : "Install"}
           </button>

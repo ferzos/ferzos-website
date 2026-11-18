@@ -8,7 +8,7 @@ This site has no feature flags. A bad production deploy is rolled back by redepl
 4. Confirm the running commit:
 
 ```sh
-pnpm run control -- health --origin <production-url> --sha <previous-sha>
+pnpm run control -- health --origin https://ferzos-website.vercel.app --sha <previous-sha>
 ```
 
-The production URL is the environment URL on that Vercel deployment. Do not invent a flag to hide a broken release; roll the deployment back.
+Use the public production host. The unique `*.vercel.app` deployment URL sits behind Vercel Authentication and returns a login page. Do not invent a flag to hide a broken release; roll the deployment back.

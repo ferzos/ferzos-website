@@ -125,7 +125,20 @@ async function checkHealth(origin: string) {
   if (!response.ok) {
     throw new Error(`/health returned ${response.status}`);
   }
-  const body = (await response.json()) as { ok?: boolean; sha?: string };
+  const text = await response.text();
+  let body: { ok?: boolean; sha?: string };
+  try {
+    body = JSON.parse(text) as { ok?: boolean; sha?: string };
+  } catch {
+    const loginPage =
+      response.url.includes("vercel.com/login") ||
+      response.url.includes("vercel.com/sso-api") ||
+      text.includes("vercel.com/sso-api");
+    const hint = loginPage
+      ? " The host redirected to Vercel Authentication. Use the public production origin."
+      : "";
+    throw new Error(`/health did not return valid JSON.${hint}`);
+  }
   if (body.ok !== true || typeof body.sha !== "string") {
     throw new Error("/health did not return { ok: true, sha }");
   }

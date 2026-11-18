@@ -10,8 +10,8 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/optimal-stopping",
     scope: "/",
     display: "standalone",
-    background_color: "#e6fafa",
-    theme_color: "#006970",
+    background_color: "#ffffff",
+    theme_color: "#006f76",
     icons: [
       {
         src: icon192.src,

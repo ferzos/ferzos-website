@@ -46,6 +46,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 alt=""
                 width={36}
                 height={36}
+                priority
+                unoptimized
                 className="size-9 rounded-lg"
               />
               <p className="text-xl font-semibold tracking-tight text-primary">

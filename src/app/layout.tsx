@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import appleTouchIcon from "./apple-touch-icon.png";
@@ -38,10 +39,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <ServiceWorkerRegistration />
         <PWAInstallPrompt />
         <header className="border-b border-border/80">
-          <div className="mx-auto flex max-w-5xl items-baseline justify-between gap-4 px-6 py-5 sm:px-10">
-            <p className="text-xl font-semibold tracking-tight text-primary">
-              Ferzos
-            </p>
+          <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-6 py-5 sm:px-10">
+            <div className="flex items-center gap-3">
+              <Image
+                src={appleTouchIcon}
+                alt=""
+                width={36}
+                height={36}
+                priority
+                unoptimized
+                className="size-9 rounded-lg"
+              />
+              <p className="text-xl font-semibold tracking-tight text-primary">
+                Ferzos
+              </p>
+            </div>
             <p className="text-sm text-muted-foreground">
               Small tools for decisions you can finish.
             </p>

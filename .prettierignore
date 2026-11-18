@@ -1,7 +1,5 @@
-node_modules/
-.next/
-out/
-build/
-coverage/
-next-env.d.ts
-pnpm-lock.yaml
+.autopilot
+.playwright
+.agents/skills/autopilot
+.agents/skills/prefer-local-kody-execute
+.agents/skills/visual-recap

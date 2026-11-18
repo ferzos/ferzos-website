@@ -10,7 +10,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "format:check": "prettier . --check",
+    "typecheck": "tsc --noEmit",
+    "control": "node --experimental-strip-types tools/control-ferzos-website.mts",
+    "verify": "pnpm run test && pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm run control -- map --check && pnpm run build",
+    "prepare": "husky"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
@@ -36,8 +40,10 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
     "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
     "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.5.2",
+    "playwright": "^1.65.1",
     "prettier": "^3.9.10",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",

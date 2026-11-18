@@ -1,18 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { usePWAInstall } from "@/hooks/usePWAInstall";
 
 export function PWAInstallPrompt() {
   const { canInstall, isInstalling, handleInstall, dismissPrompt } =
     usePWAInstall();
-  const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    setIsVisible(canInstall);
-  }, [canInstall]);
-
-  if (!isVisible) {
+  if (!canInstall) {
     return null;
   }
 

@@ -23,6 +23,9 @@ Open [http://localhost:3000](http://localhost:3000).
 - `pnpm lint:fix` — apply available ESLint fixes.
 - `pnpm format` — format files with Prettier.
 - `pnpm format:check` — check formatting without changing files.
+- `pnpm typecheck` — run the TypeScript checker.
+- `pnpm verify` — run tests, lint, format check, typecheck, the feature-map check, and the production build. CI runs this command.
+- `pnpm control -- <command>` — drive the running app (`doctor`, `dev`, `request`, `browse`, `map --check`, `health`). See `.agents/skills/control-ferzos-website/SKILL.md`.
 
 ## Features
 

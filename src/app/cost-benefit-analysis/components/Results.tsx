@@ -7,11 +7,11 @@ import { cn } from "@/lib/utils";
 
 // Literal class strings let Tailwind detect every segment color.
 const SEGMENT_COLORS = [
-  "bg-blue-900 dark:bg-blue-400",
-  "bg-orange-600 dark:bg-orange-400",
-  "bg-cyan-700 dark:bg-cyan-300",
-  "bg-violet-600 dark:bg-violet-300",
-  "bg-green-700 dark:bg-green-300",
+  "bg-indigo-700 dark:bg-indigo-300",
+  "bg-violet-700 dark:bg-violet-300",
+  "bg-blue-800 dark:bg-blue-300",
+  "bg-fuchsia-700 dark:bg-fuchsia-300",
+  "bg-purple-800 dark:bg-purple-300",
   "bg-rose-700 dark:bg-rose-300",
 ] as const;
 

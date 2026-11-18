@@ -24,11 +24,17 @@ export function usePWAInstall(): PWAInstallState & {
   });
 
   useEffect(() => {
-    // Check if app is already installed
-    if (window.matchMedia("(display-mode: standalone)").matches) {
-      setState((prev) => ({ ...prev, isInstalled: true }));
-      return;
-    }
+    const media = window.matchMedia("(display-mode: standalone)");
+
+    const syncInstalled = () => {
+      if (!media.matches) return;
+      setState((prev) =>
+        prev.isInstalled ? prev : { ...prev, isInstalled: true },
+      );
+    };
+
+    syncInstalled();
+    media.addEventListener("change", syncInstalled);
 
     const handleBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();
@@ -53,6 +59,7 @@ export function usePWAInstall(): PWAInstallState & {
     window.addEventListener("appinstalled", handleAppInstalled);
 
     return () => {
+      media.removeEventListener("change", syncInstalled);
       window.removeEventListener(
         "beforeinstallprompt",
         handleBeforeInstallPrompt,

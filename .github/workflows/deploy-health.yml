@@ -1,0 +1,21 @@
+name: Deploy health
+
+on:
+  deployment_status:
+
+jobs:
+  health:
+    if: >-
+      github.event.deployment_status.state == 'success' &&
+      github.event.deployment.environment == 'Production'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check the deployed commit
+        env:
+          ORIGIN: ${{ github.event.deployment_status.environment_url }}
+          SHA: ${{ github.event.deployment.sha }}
+        run: node --experimental-strip-types tools/control-ferzos-website.mts health --origin "$ORIGIN" --sha "$SHA"

@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "skills": {
+    "autopilot": {
+      "source": "kentcdodds/kcd-skills",
+      "sourceType": "github",
+      "skillPath": "skills/autopilot/SKILL.md",
+      "computedHash": "9186668cc11635c0734820d0e4e85c8fd3cbc72d413d545825928bb04facdd50"
+    },
+    "friction-log": {
+      "source": "kentcdodds/kcd-skills",
+      "sourceType": "github",
+      "skillPath": "skills/friction-log/SKILL.md",
+      "computedHash": "403285729e8c72bc40430f4b2ea3f8363e1cb2eb1b8df460dfea87fe9871ca18"
+    },
+    "modern-web-guidance": {
+      "source": "GoogleChrome/modern-web-guidance",
+      "sourceType": "github",
+      "skillPath": "skills/modern-web-guidance/SKILL.md",
+      "computedHash": "d9f3ceba8b5c77b12ae6f852932a349843ce086d03ce76ab5e2257e7e5acd16d"
+    },
+    "prefer-local-kody-execute": {
+      "source": "kentcdodds/kcd-skills",
+      "sourceType": "github",
+      "skillPath": "skills/prefer-local-kody-execute/SKILL.md",
+      "computedHash": "8194f1e4abd1e57f0e44fcab89ae251175726a7442116c39d12f5b4098fe81f6"
+    },
+    "review-and-recommend": {
+      "source": "kentcdodds/kcd-skills",
+      "sourceType": "github",
+      "skillPath": "skills/review-and-recommend/SKILL.md",
+      "computedHash": "73d24a2d5053fa3060e943f691ac171104887ecb78f2ddf88bf4ff9990ed5f06"
+    },
+    "ship-pr": {
+      "source": "kentcdodds/kcd-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ship-pr/SKILL.md",
+      "computedHash": "0d10fced5379451f7d5c5093d8e6d323b83b57484c9eb6ca584a4374ed829076"
+    },
+    "use-kody": {
+      "source": "kentcdodds/kcd-skills",
+      "sourceType": "github",
+      "skillPath": "skills/use-kody/SKILL.md",
+      "computedHash": "a022a0f226bb1b4446db05d1926d600ba6b3cbe95953dbadd15c06069e9bd432"
+    },
+    "visual-recap": {
+      "source": "kentcdodds/kcd-skills",
+      "sourceType": "github",
+      "skillPath": "skills/visual-recap/SKILL.md",
+      "computedHash": "98ceefbfacba2f440eacf73b20a9dd1dafa9373932b027a42c60566141b96dc0"
+    }
+  }
+}
